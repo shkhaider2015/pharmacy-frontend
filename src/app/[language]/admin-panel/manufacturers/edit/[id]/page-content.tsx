@@ -1,5 +1,7 @@
 "use client";
 
+import FormTextInput from "@/components/form/text-input/form-text-input";
+
 import {
   // React dependencies here
   useEffect,
@@ -23,18 +25,47 @@ import { useEditManufacturerService } from "@/services/api/services/manufacturer
 import { useGetManufacturerQuery } from "../../queries/queries";
 
 type EditFormData = {
+  short: string;
+
+  origin: string;
+
+  address: string;
+
+  license: string;
+
+  name: string;
+
   // types here
 };
 
 const defaultValues: EditFormData = {
+  short: "",
+
+  origin: "",
+
+  address: "",
+
+  license: "",
+
+  name: "",
+
   // default values here
 };
 
 const useValidationSchema = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation("admin-panel-manufacturers-edit");
 
   return yup.object().shape({
+    name: yup.string().required(t("inputs.name.validation.required")),
+
+    license: yup.string().defined(),
+
+    address: yup.string().defined(),
+
+    origin: yup.string().defined(),
+
+    short: yup.string().defined(),
+
     // Do not remove this comment. <edit-form-validation-schema />
   });
 };
@@ -77,41 +108,54 @@ function FormEdit() {
 
   const { handleSubmit, setError, reset } = methods;
 
-  const onSubmit = handleSubmit(
-    async (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      formData
-    ) => {
-      const { data, status } = await fetchEditManufacturer({
-        id: entityId,
-        data: {
-          // Do not remove this comment. <edit-form-submit-property />
-        },
-      });
+  const onSubmit = handleSubmit(async (formData) => {
+    const { data, status } = await fetchEditManufacturer({
+      id: entityId,
+      data: {
+        name: formData.name,
 
-      if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
-        (Object.keys(data.errors) as Array<keyof EditFormData>).forEach(
-          (key) => {
-            setError(key, {
-              type: "manual",
-              message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
-            });
-          }
-        );
-        return;
-      }
-      if (status === HTTP_CODES_ENUM.OK) {
-        enqueueSnackbar(t("alerts.success"), {
-          variant: "success",
+        license: formData.license,
+
+        address: formData.address,
+
+        origin: formData.origin,
+
+        short: formData.short,
+
+        // Do not remove this comment. <edit-form-submit-property />
+      },
+    });
+
+    if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
+      (Object.keys(data.errors) as Array<keyof EditFormData>).forEach((key) => {
+        setError(key, {
+          type: "manual",
+          message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
         });
-        router.push("/admin-panel/manufacturers");
-      }
+      });
+      return;
     }
-  );
+    if (status === HTTP_CODES_ENUM.OK) {
+      enqueueSnackbar(t("alerts.success"), {
+        variant: "success",
+      });
+      router.push("/admin-panel/manufacturers");
+    }
+  });
 
   useEffect(() => {
     if (initialData) {
       reset({
+        name: initialData.data.name ?? "",
+
+        license: initialData.data.license ?? "",
+
+        address: initialData.data.address ?? "",
+
+        origin: initialData.data.origin ?? "",
+
+        short: initialData.data.short ?? "",
+
         // Do not remove this comment. <edit-form-reset-property />
       });
     }
@@ -124,6 +168,46 @@ function FormEdit() {
           <Grid container spacing={2} mb={3} mt={3}>
             <Grid size={{ xs: 12 }}>
               <Typography variant="h6">{t("title")}</Typography>
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="name"
+                testId="name"
+                label={t("inputs.name.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="license"
+                testId="license"
+                label={t("inputs.license.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="address"
+                testId="address"
+                label={t("inputs.address.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="origin"
+                testId="origin"
+                label={t("inputs.origin.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="short"
+                testId="short"
+                label={t("inputs.short.label")}
+              />
             </Grid>
 
             {/* Do not remove this comment. <edit-component-field />  */}

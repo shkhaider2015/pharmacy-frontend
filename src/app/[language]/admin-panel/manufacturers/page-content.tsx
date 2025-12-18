@@ -226,6 +226,12 @@ function ManufacturersPageContent() {
                 <TableRow>
                   <TableCell>{t("table.column1")}</TableCell>
 
+                  <TableCell>{t("table.name")}</TableCell>
+
+                  <TableCell>{t("table.address")}</TableCell>
+
+                  <TableCell>{t("table.short")}</TableCell>
+
                   {/* Do not remove this comment. <index-component-head-field />  */}
 
                   <TableCell style={{ width: 130 }}></TableCell>
@@ -242,6 +248,12 @@ function ManufacturersPageContent() {
             itemContent={(index, item) => (
               <>
                 <TableCell>{item?.id}</TableCell>
+
+                <TableCell>{item?.name}</TableCell>
+
+                <TableCell>{item?.address}</TableCell>
+
+                <TableCell>{item?.short}</TableCell>
 
                 {/* Do not remove this comment. <index-component-body-field />  */}
 

@@ -21,11 +21,15 @@ import { RoleEnum } from "@/services/api/types/role";
 import Divider from "@mui/material/Divider";
 import ThemeSwitchButton from "@/components/switch-theme-button";
 import { IS_SIGN_UP_ENABLED } from "@/services/auth/config";
+import { usePathname } from "next/navigation";
 
 function ResponsiveAppBar() {
   const { t } = useTranslation("common");
   const { user, isLoaded } = useAuth();
   const { logOut } = useAuthActions();
+  const pathName = usePathname();
+  // pathname is /something/admin-panel/something
+  const isAdminRoute = pathName.includes("/admin-panel");
   const [anchorElementNav, setAnchorElementNav] = useState<null | HTMLElement>(
     null
   );
@@ -47,7 +51,7 @@ function ResponsiveAppBar() {
     setAnchorElementUser(null);
   };
 
-  if ([RoleEnum.ADMIN].includes(Number(user?.role?.id))) {
+  if ([RoleEnum.ADMIN].includes(Number(user?.role?.id)) && isAdminRoute) {
     return null;
   }
 
@@ -208,7 +212,13 @@ function ResponsiveAppBar() {
           >
             {t("common:app-name")}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              paddingLeft: { xs: 0, md: 5 },
+            }}
+          >
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
@@ -217,53 +227,6 @@ function ResponsiveAppBar() {
             >
               {t("common:navigation.home")}
             </Button>
-
-            {!!user?.role &&
-              [RoleEnum.ADMIN].includes(Number(user?.role?.id)) && (
-                <>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={Link}
-                    href="/admin-panel/users"
-                  >
-                    {t("common:navigation.users")}
-                  </Button>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={Link}
-                    href="/admin-panel/manufacturers"
-                  >
-                    {t("common:navigation.Manufacturers")}
-                  </Button>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={Link}
-                    href="/admin-panel/categories"
-                  >
-                    {t("common:navigation.Categories")}
-                  </Button>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={Link}
-                    href="/admin-panel/generics"
-                  >
-                    {t("common:navigation.Generics")}
-                  </Button>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={Link}
-                    href="/admin-panel/products"
-                  >
-                    {t("common:navigation.Products")}
-                  </Button>
-                  {/* desktop-menu-items */}
-                </>
-              )}
           </Box>
 
           <Box

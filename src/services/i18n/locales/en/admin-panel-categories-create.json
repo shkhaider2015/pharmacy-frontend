@@ -2,6 +2,18 @@
   "title": "Create category",
   "actions": { "submit": "Save", "cancel": "Cancel" },
   "inputs": {
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is required"
+      }
+    },
+    "code": {
+      "label": "Code",
+      "validation": {
+        "required": "Code is required"
+      }
+    },
     "<system>": "Do not remove this property"
   },
   "alerts": {

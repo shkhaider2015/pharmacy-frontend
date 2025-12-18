@@ -1,5 +1,7 @@
 "use client";
 
+import FormTextInput from "@/components/form/text-input/form-text-input";
+
 import {
   // React dependencies here
   useEffect,
@@ -23,18 +25,29 @@ import { useEditCategoryService } from "@/services/api/services/categories";
 import { useGetCategoryQuery } from "../../queries/queries";
 
 type EditFormData = {
+  code: string;
+
+  name: string;
+
   // types here
 };
 
 const defaultValues: EditFormData = {
+  code: "",
+
+  name: "",
+
   // default values here
 };
 
 const useValidationSchema = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation("admin-panel-categories-edit");
 
   return yup.object().shape({
+    name: yup.string().required(t("inputs.name.validation.required")),
+
+    code: yup.string().defined(),
+
     // Do not remove this comment. <edit-form-validation-schema />
   });
 };
@@ -77,41 +90,42 @@ function FormEdit() {
 
   const { handleSubmit, setError, reset } = methods;
 
-  const onSubmit = handleSubmit(
-    async (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      formData
-    ) => {
-      const { data, status } = await fetchEditCategory({
-        id: entityId,
-        data: {
-          // Do not remove this comment. <edit-form-submit-property />
-        },
-      });
+  const onSubmit = handleSubmit(async (formData) => {
+    const { data, status } = await fetchEditCategory({
+      id: entityId,
+      data: {
+        name: formData.name,
 
-      if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
-        (Object.keys(data.errors) as Array<keyof EditFormData>).forEach(
-          (key) => {
-            setError(key, {
-              type: "manual",
-              message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
-            });
-          }
-        );
-        return;
-      }
-      if (status === HTTP_CODES_ENUM.OK) {
-        enqueueSnackbar(t("alerts.success"), {
-          variant: "success",
+        code: formData.code,
+
+        // Do not remove this comment. <edit-form-submit-property />
+      },
+    });
+
+    if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
+      (Object.keys(data.errors) as Array<keyof EditFormData>).forEach((key) => {
+        setError(key, {
+          type: "manual",
+          message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
         });
-        router.push("/admin-panel/categories");
-      }
+      });
+      return;
     }
-  );
+    if (status === HTTP_CODES_ENUM.OK) {
+      enqueueSnackbar(t("alerts.success"), {
+        variant: "success",
+      });
+      router.push("/admin-panel/categories");
+    }
+  });
 
   useEffect(() => {
     if (initialData) {
       reset({
+        name: initialData.data.name ?? "",
+
+        code: initialData.data.code ?? "",
+
         // Do not remove this comment. <edit-form-reset-property />
       });
     }
@@ -124,6 +138,22 @@ function FormEdit() {
           <Grid container spacing={2} mb={3} mt={3}>
             <Grid size={{ xs: 12 }}>
               <Typography variant="h6">{t("title")}</Typography>
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="name"
+                testId="name"
+                label={t("inputs.name.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="code"
+                testId="code"
+                label={t("inputs.code.label")}
+              />
             </Grid>
 
             {/* Do not remove this comment. <edit-component-field />  */}

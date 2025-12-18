@@ -2,6 +2,15 @@
   "title": "Products",
   "table": {
     "column1": "ID",
+    "name": "Name",
+    "description": "Description",
+    "isPrescriptionRequired": "Prescription Required",
+    "stock": "Stock",
+    "expiryDate": "Expiry Date",
+    "manufactureDate": "Manufacture Date",
+    "manufacturer": "Manufacturer",
+    "generics": "Generics",
+    "categories": "Categories",
     "<system>": "Do not remove this property"
   },
   "actions": {

@@ -1,5 +1,7 @@
 "use client";
 
+import FormTextInput from "@/components/form/text-input/form-text-input";
+
 import Button from "@mui/material/Button";
 import { useForm, FormProvider, useFormState } from "react-hook-form";
 import Container from "@mui/material/Container";
@@ -18,18 +20,47 @@ import { useRouter } from "next/navigation";
 import { useCreateManufacturerService } from "@/services/api/services/manufacturers";
 
 type CreateFormData = {
+  short: string;
+
+  origin: string;
+
+  address: string;
+
+  license: string;
+
+  name: string;
+
   // types here
 };
 
 const defaultValues: CreateFormData = {
+  short: "",
+
+  origin: "",
+
+  address: "",
+
+  license: "",
+
+  name: "",
+
   // default values here
 };
 
 const useValidationSchema = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation("admin-panel-manufacturers-create");
 
   return yup.object().shape({
+    name: yup.string().required(t("inputs.name.validation.required")),
+
+    license: yup.string().defined(),
+
+    address: yup.string().defined(),
+
+    origin: yup.string().defined(),
+
+    short: yup.string().defined(),
+
     // Do not remove this comment. <create-form-validation-schema />
   });
 };
@@ -69,36 +100,41 @@ function FormCreate() {
 
   const { handleSubmit, setError } = methods;
 
-  const onSubmit = handleSubmit(
-    async (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      formData
-    ) => {
-      const { data, status } = await fetchCreateManufacturer({
-        // Do not remove this comment. <create-form-submit-property />
-      });
+  const onSubmit = handleSubmit(async (formData) => {
+    const { data, status } = await fetchCreateManufacturer({
+      name: formData.name,
 
-      if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
-        (Object.keys(data.errors) as Array<keyof CreateFormData>).forEach(
-          (key) => {
-            setError(key, {
-              type: "manual",
-              message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
-            });
-          }
-        );
+      license: formData.license,
 
-        return;
-      }
+      address: formData.address,
 
-      if (status === HTTP_CODES_ENUM.CREATED) {
-        enqueueSnackbar(t("alerts.success"), {
-          variant: "success",
-        });
-        router.push("/admin-panel/manufacturers");
-      }
+      origin: formData.origin,
+
+      short: formData.short,
+
+      // Do not remove this comment. <create-form-submit-property />
+    });
+
+    if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
+      (Object.keys(data.errors) as Array<keyof CreateFormData>).forEach(
+        (key) => {
+          setError(key, {
+            type: "manual",
+            message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
+          });
+        }
+      );
+
+      return;
     }
-  );
+
+    if (status === HTTP_CODES_ENUM.CREATED) {
+      enqueueSnackbar(t("alerts.success"), {
+        variant: "success",
+      });
+      router.push("/admin-panel/manufacturers");
+    }
+  });
 
   return (
     <FormProvider {...methods}>
@@ -107,6 +143,46 @@ function FormCreate() {
           <Grid container spacing={2} mb={3} mt={3}>
             <Grid size={{ xs: 12 }}>
               <Typography variant="h6">{t("title")}</Typography>
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<CreateFormData>
+                name="name"
+                testId="name"
+                label={t("inputs.name.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<CreateFormData>
+                name="license"
+                testId="license"
+                label={t("inputs.license.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<CreateFormData>
+                name="address"
+                testId="address"
+                label={t("inputs.address.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<CreateFormData>
+                name="origin"
+                testId="origin"
+                label={t("inputs.origin.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<CreateFormData>
+                name="short"
+                testId="short"
+                label={t("inputs.short.label")}
+              />
             </Grid>
 
             {/* Do not remove this comment. <create-component-field />  */}

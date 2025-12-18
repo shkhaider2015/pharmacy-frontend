@@ -1,5 +1,7 @@
 "use client";
 
+import FormTextInput from "@/components/form/text-input/form-text-input";
+
 import {
   // React dependencies here
   useEffect,
@@ -23,18 +25,29 @@ import { useEditGenericService } from "@/services/api/services/generics";
 import { useGetGenericQuery } from "../../queries/queries";
 
 type EditFormData = {
+  strength: string;
+
+  name: string;
+
   // types here
 };
 
 const defaultValues: EditFormData = {
+  strength: "",
+
+  name: "",
+
   // default values here
 };
 
 const useValidationSchema = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation("admin-panel-generics-edit");
 
   return yup.object().shape({
+    name: yup.string().required(t("inputs.name.validation.required")),
+
+    strength: yup.string().required(t("inputs.strength.validation.required")),
+
     // Do not remove this comment. <edit-form-validation-schema />
   });
 };
@@ -77,41 +90,42 @@ function FormEdit() {
 
   const { handleSubmit, setError, reset } = methods;
 
-  const onSubmit = handleSubmit(
-    async (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      formData
-    ) => {
-      const { data, status } = await fetchEditGeneric({
-        id: entityId,
-        data: {
-          // Do not remove this comment. <edit-form-submit-property />
-        },
-      });
+  const onSubmit = handleSubmit(async (formData) => {
+    const { data, status } = await fetchEditGeneric({
+      id: entityId,
+      data: {
+        name: formData.name,
 
-      if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
-        (Object.keys(data.errors) as Array<keyof EditFormData>).forEach(
-          (key) => {
-            setError(key, {
-              type: "manual",
-              message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
-            });
-          }
-        );
-        return;
-      }
-      if (status === HTTP_CODES_ENUM.OK) {
-        enqueueSnackbar(t("alerts.success"), {
-          variant: "success",
+        strength: formData.strength,
+
+        // Do not remove this comment. <edit-form-submit-property />
+      },
+    });
+
+    if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
+      (Object.keys(data.errors) as Array<keyof EditFormData>).forEach((key) => {
+        setError(key, {
+          type: "manual",
+          message: t(`inputs.${key}.validation.server.${data.errors[key]}`),
         });
-        router.push("/admin-panel/generics");
-      }
+      });
+      return;
     }
-  );
+    if (status === HTTP_CODES_ENUM.OK) {
+      enqueueSnackbar(t("alerts.success"), {
+        variant: "success",
+      });
+      router.push("/admin-panel/generics");
+    }
+  });
 
   useEffect(() => {
     if (initialData) {
       reset({
+        name: initialData.data.name ?? "",
+
+        strength: initialData.data.strength ?? "",
+
         // Do not remove this comment. <edit-form-reset-property />
       });
     }
@@ -124,6 +138,22 @@ function FormEdit() {
           <Grid container spacing={2} mb={3} mt={3}>
             <Grid size={{ xs: 12 }}>
               <Typography variant="h6">{t("title")}</Typography>
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="name"
+                testId="name"
+                label={t("inputs.name.label")}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <FormTextInput<EditFormData>
+                name="strength"
+                testId="strength"
+                label={t("inputs.strength.label")}
+              />
             </Grid>
 
             {/* Do not remove this comment. <edit-component-field />  */}

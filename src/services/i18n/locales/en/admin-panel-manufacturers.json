@@ -2,6 +2,11 @@
   "title": "Manufacturers",
   "table": {
     "column1": "ID",
+    "name": "Name",
+    "license": "License",
+    "address": "Address",
+    "origin": "Origin",
+    "short": "Short",
     "<system>": "Do not remove this property"
   },
   "actions": {

@@ -2,6 +2,18 @@
   "title": "Create generic",
   "actions": { "submit": "Save", "cancel": "Cancel" },
   "inputs": {
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is required"
+      }
+    },
+    "strength": {
+      "label": "Strength",
+      "validation": {
+        "required": "Strength is required"
+      }
+    },
     "<system>": "Do not remove this property"
   },
   "alerts": {

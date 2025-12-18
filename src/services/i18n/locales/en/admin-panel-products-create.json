@@ -2,6 +2,60 @@
   "title": "Create product",
   "actions": { "submit": "Save", "cancel": "Cancel" },
   "inputs": {
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is required"
+      }
+    },
+    "description": {
+      "label": "Description",
+      "validation": {
+        "required": "Description is required"
+      }
+    },
+    "isPrescriptionRequired": {
+      "label": "Isprescriptionrequired",
+      "validation": {
+        "required": "Isprescriptionrequired is required"
+      }
+    },
+    "stock": {
+      "label": "Stock",
+      "validation": {
+        "required": "Stock is required"
+      }
+    },
+    "expiryDate": {
+      "label": "Expirydate",
+      "validation": {
+        "required": "Expirydate is required"
+      }
+    },
+    "manufactureDate": {
+      "label": "Manufacturedate",
+      "validation": {
+        "required": "Manufacturedate is required"
+      }
+    },
+    "manufacturer": {
+      "label": "Manufacturer",
+      "validation": {
+        "required": "Manufacturer is required"
+      }
+    },
+    "generics": {
+      "label": "Generics",
+      "validation": {
+        "required": "Generics is required"
+      }
+    },
+    "categories": {
+      "label": "Categories",
+      "validation": {
+        "required": "Categories is required"
+      }
+    },
     "<system>": "Do not remove this property"
   },
   "alerts": {

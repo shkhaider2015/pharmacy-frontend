@@ -223,6 +223,14 @@ function ProductsPageContent() {
                 <TableRow>
                   <TableCell>{t("table.column1")}</TableCell>
 
+                  <TableCell>{t("table.name")}</TableCell>
+
+                  <TableCell>{t("table.isPrescriptionRequired")}</TableCell>
+
+                  <TableCell>{t("table.stock")}</TableCell>
+
+                  <TableCell>{t("table.expiryDate")}</TableCell>
+
                   {/* Do not remove this comment. <index-component-head-field />  */}
 
                   <TableCell style={{ width: 130 }}></TableCell>
@@ -239,6 +247,19 @@ function ProductsPageContent() {
             itemContent={(index, item) => (
               <>
                 <TableCell>{item?.id}</TableCell>
+
+                <TableCell>{item?.name}</TableCell>
+
+                <TableCell>
+                  {item?.isPrescriptionRequired?.toString()}
+                </TableCell>
+
+                <TableCell>{item?.stock}</TableCell>
+                <TableCell>
+                  {item?.expiryDate
+                    ? new Date(item.expiryDate).toLocaleDateString()
+                    : ""}
+                </TableCell>
 
                 {/* Do not remove this comment. <index-component-body-field />  */}
 

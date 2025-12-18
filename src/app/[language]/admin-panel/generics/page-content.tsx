@@ -223,6 +223,10 @@ function GenericsPageContent() {
                 <TableRow>
                   <TableCell>{t("table.column1")}</TableCell>
 
+                  <TableCell>{t("table.name")}</TableCell>
+
+                  <TableCell>{t("table.strength")}</TableCell>
+
                   {/* Do not remove this comment. <index-component-head-field />  */}
 
                   <TableCell style={{ width: 130 }}></TableCell>
@@ -239,6 +243,10 @@ function GenericsPageContent() {
             itemContent={(index, item) => (
               <>
                 <TableCell>{item?.id}</TableCell>
+
+                <TableCell>{item?.name}</TableCell>
+
+                <TableCell>{item?.strength}</TableCell>
 
                 {/* Do not remove this comment. <index-component-body-field />  */}
 

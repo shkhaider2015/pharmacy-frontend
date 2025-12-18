@@ -226,6 +226,10 @@ function CategoriesPageContent() {
                 <TableRow>
                   <TableCell>{t("table.column1")}</TableCell>
 
+                  <TableCell>{t("table.name")}</TableCell>
+
+                  <TableCell>{t("table.code")}</TableCell>
+
                   {/* Do not remove this comment. <index-component-head-field />  */}
 
                   <TableCell style={{ width: 130 }}></TableCell>
@@ -242,6 +246,10 @@ function CategoriesPageContent() {
             itemContent={(index, item) => (
               <>
                 <TableCell>{item?.id}</TableCell>
+
+                <TableCell>{item?.name}</TableCell>
+
+                <TableCell>{item?.code}</TableCell>
 
                 {/* Do not remove this comment. <index-component-body-field />  */}
 

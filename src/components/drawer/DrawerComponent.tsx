@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
@@ -67,8 +68,8 @@ const productsRoutes: RouteItem[] = [
 
 export default function ResponsiveDrawer(props: Props) {
   const { children } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [isClosing, setIsClosing] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [_, setIsClosing] = useState(false);
 
   const handleDrawerClose = () => {
     setMobileOpen(false);

@@ -2,6 +2,36 @@
   "title": "Edit manufacturer",
   "actions": { "submit": "Save", "cancel": "Cancel" },
   "inputs": {
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is required"
+      }
+    },
+    "license": {
+      "label": "License",
+      "validation": {
+        "required": "License is required"
+      }
+    },
+    "address": {
+      "label": "Address",
+      "validation": {
+        "required": "Address is required"
+      }
+    },
+    "origin": {
+      "label": "Origin",
+      "validation": {
+        "required": "Origin is required"
+      }
+    },
+    "short": {
+      "label": "Short",
+      "validation": {
+        "required": "Short is required"
+      }
+    },
     "<system>": "Do not remove this property"
   },
   "alerts": { "success": "Manufacturer has been updated successfully" }
