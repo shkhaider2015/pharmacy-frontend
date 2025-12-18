@@ -2,6 +2,10 @@
   "app-name": "APP",
   "loading": "Loading ...",
   "navigation": {
+    "Products": "Products",
+    "Generics": "Generics",
+    "Categories": "Categories",
+    "Manufacturers": "Manufacturers",
     "home": "Home",
     "signIn": "Sign In",
     "signUp": "Sign Up",

@@ -1,0 +1,8 @@
+{
+  "title": "Edit product",
+  "actions": { "submit": "Save", "cancel": "Cancel" },
+  "inputs": {
+    "<system>": "Do not remove this property"
+  },
+  "alerts": { "success": "Product has been updated successfully" }
+}

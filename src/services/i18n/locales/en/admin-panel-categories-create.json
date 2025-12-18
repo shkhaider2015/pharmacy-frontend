@@ -1,0 +1,10 @@
+{
+  "title": "Create category",
+  "actions": { "submit": "Save", "cancel": "Cancel" },
+  "inputs": {
+    "<system>": "Do not remove this property"
+  },
+  "alerts": {
+    "success": "Category has been created successfully"
+  }
+}

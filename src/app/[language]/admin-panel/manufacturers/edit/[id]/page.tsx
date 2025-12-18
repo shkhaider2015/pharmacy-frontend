@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import EditManufacturer from "./page-content";
 import { getServerTranslation } from "@/services/i18n";
-import AdminPanel from "./page-content";
-import Layout from "./layout";
 
 type Props = {
   params: Promise<{ language: string }>;
@@ -9,7 +8,11 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const { t } = await getServerTranslation(params.language, "admin-panel-home");
+
+  const { t } = await getServerTranslation(
+    params.language,
+    "admin-panel-manufacturers-edit"
+  );
 
   return {
     title: t("title"),
@@ -17,9 +20,5 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default function Page() {
-  return (
-    <Layout>
-      <AdminPanel />
-    </Layout>
-  );
+  return <EditManufacturer />;
 }

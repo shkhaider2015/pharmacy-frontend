@@ -47,6 +47,10 @@ function ResponsiveAppBar() {
     setAnchorElementUser(null);
   };
 
+  if ([RoleEnum.ADMIN].includes(Number(user?.role?.id))) {
+    return null;
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -114,6 +118,46 @@ function ResponsiveAppBar() {
                   >
                     <Typography textAlign="center">
                       {t("common:navigation.users")}
+                    </Typography>
+                  </MenuItem>,
+                  <MenuItem
+                    key="manufacturers"
+                    onClick={handleCloseNavMenu}
+                    component={Link}
+                    href="/admin-panel/manufacturers"
+                  >
+                    <Typography textAlign="center">
+                      {t("common:navigation.Manufacturers")}
+                    </Typography>
+                  </MenuItem>,
+                  <MenuItem
+                    key="categories"
+                    onClick={handleCloseNavMenu}
+                    component={Link}
+                    href="/admin-panel/categories"
+                  >
+                    <Typography textAlign="center">
+                      {t("common:navigation.Categories")}
+                    </Typography>
+                  </MenuItem>,
+                  <MenuItem
+                    key="generics"
+                    onClick={handleCloseNavMenu}
+                    component={Link}
+                    href="/admin-panel/generics"
+                  >
+                    <Typography textAlign="center">
+                      {t("common:navigation.Generics")}
+                    </Typography>
+                  </MenuItem>,
+                  <MenuItem
+                    key="products"
+                    onClick={handleCloseNavMenu}
+                    component={Link}
+                    href="/admin-panel/products"
+                  >
+                    <Typography textAlign="center">
+                      {t("common:navigation.Products")}
                     </Typography>
                   </MenuItem>,
                   // mobile-menu-items
@@ -184,6 +228,38 @@ function ResponsiveAppBar() {
                     href="/admin-panel/users"
                   >
                     {t("common:navigation.users")}
+                  </Button>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    component={Link}
+                    href="/admin-panel/manufacturers"
+                  >
+                    {t("common:navigation.Manufacturers")}
+                  </Button>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    component={Link}
+                    href="/admin-panel/categories"
+                  >
+                    {t("common:navigation.Categories")}
+                  </Button>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    component={Link}
+                    href="/admin-panel/generics"
+                  >
+                    {t("common:navigation.Generics")}
+                  </Button>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    component={Link}
+                    href="/admin-panel/products"
+                  >
+                    {t("common:navigation.Products")}
                   </Button>
                   {/* desktop-menu-items */}
                 </>

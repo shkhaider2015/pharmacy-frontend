@@ -1,0 +1,8 @@
+{
+  "title": "Edit manufacturer",
+  "actions": { "submit": "Save", "cancel": "Cancel" },
+  "inputs": {
+    "<system>": "Do not remove this property"
+  },
+  "alerts": { "success": "Manufacturer has been updated successfully" }
+}

@@ -1,6 +1,9 @@
 export enum RoleEnum {
   ADMIN = 1,
-  USER = 2,
+  PHARMACIST = 2,
+  CASHIER = 3,
+  MANAGER = 4,
+  USER = 5,
 }
 
 export type Role = {

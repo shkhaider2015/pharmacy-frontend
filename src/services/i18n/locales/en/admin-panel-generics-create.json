@@ -1,0 +1,10 @@
+{
+  "title": "Create generic",
+  "actions": { "submit": "Save", "cancel": "Cancel" },
+  "inputs": {
+    "<system>": "Do not remove this property"
+  },
+  "alerts": {
+    "success": "Generic has been created successfully"
+  }
+}

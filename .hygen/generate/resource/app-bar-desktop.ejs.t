@@ -1,5 +1,5 @@
 ---
-inject: true
+inject: false
 to: src/components/app-bar.tsx
 before: desktop-menu-items
 ---

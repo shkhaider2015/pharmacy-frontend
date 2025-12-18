@@ -1,0 +1,19 @@
+{
+  "title": "Generics",
+  "table": {
+    "column1": "ID",
+    "<system>": "Do not remove this property"
+  },
+  "actions": {
+    "add": "Add generic",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create generic"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete generic",
+      "message": "Are you sure you want to delete this generic?"
+    }
+  }
+}
