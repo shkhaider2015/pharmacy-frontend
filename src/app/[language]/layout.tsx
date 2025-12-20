@@ -22,6 +22,7 @@ import GoogleAuthProvider from "@/services/social-auth/google/google-auth-provid
 import FacebookAuthProvider from "@/services/social-auth/facebook/facebook-auth-provider";
 import ConfirmDialogProvider from "@/components/confirm-dialog/confirm-dialog-provider";
 import InitColorSchemeScript from "@/components/theme/init-color-scheme-script";
+import NextTopLoader from "nextjs-toploader";
 
 type Props = {
   params: Promise<{ language: string }>;
@@ -58,7 +59,6 @@ export default async function RootLayout(props: {
           <ReactQueryDevtools initialIsOpen={false} />
           <ThemeProvider>
             <CssBaseline />
-
             <StoreLanguageProvider>
               <ConfirmDialogProvider>
                 <AuthProvider>
@@ -66,6 +66,7 @@ export default async function RootLayout(props: {
                     <FacebookAuthProvider>
                       <LeavePageProvider>
                         <ResponsiveAppBar />
+                        <NextTopLoader />
                         {children}
                         <ToastContainer
                           position="bottom-left"
