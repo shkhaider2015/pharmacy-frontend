@@ -1,0 +1,38 @@
+{
+  "title": "Edit supplier",
+  "actions": { "submit": "Save", "cancel": "Cancel" },
+  "inputs": {
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is required"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "validation": {
+        "required": "Email is required"
+      }
+    },
+    "phone": {
+      "label": "Phone",
+      "validation": {
+        "required": "Phone is required"
+      }
+    },
+    "address": {
+      "label": "Address",
+      "validation": {
+        "required": "Address is required"
+      }
+    },
+    "lastOrderDate": {
+      "label": "Lastorderdate",
+      "validation": {
+        "required": "Lastorderdate is required"
+      }
+    },
+    "<system>": "Do not remove this property"
+  },
+  "alerts": { "success": "Supplier has been updated successfully" }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Edit customer",
+  "actions": { "submit": "Save", "cancel": "Cancel" },
+  "inputs": {
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is required"
+      }
+    },
+    "companyName": {
+      "label": "Companyname",
+      "validation": {
+        "required": "Companyname is required"
+      }
+    },
+    "type": {
+      "label": "Type",
+      "validation": {
+        "required": "Type is required"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "validation": {
+        "required": "Email is required"
+      }
+    },
+    "phone": {
+      "label": "Phone",
+      "validation": {
+        "required": "Phone is required"
+      }
+    },
+    "address": {
+      "label": "Address",
+      "validation": {
+        "required": "Address is required"
+      }
+    },
+    "<system>": "Do not remove this property"
+  },
+  "alerts": { "success": "Customer has been updated successfully" }
+}

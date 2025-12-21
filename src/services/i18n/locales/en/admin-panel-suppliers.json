@@ -1,0 +1,24 @@
+{
+  "title": "Suppliers",
+  "table": {
+    "column1": "ID",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "lastOrderDate": "Lastorderdate",
+    "<system>": "Do not remove this property"
+  },
+  "actions": {
+    "add": "Add supplier",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create supplier"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Delete supplier",
+      "message": "Are you sure you want to delete this supplier?"
+    }
+  }
+}

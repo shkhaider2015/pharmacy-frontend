@@ -2,6 +2,8 @@
   "app-name": "APP",
   "loading": "Loading ...",
   "navigation": {
+    "Customers": "Customers",
+    "Suppliers": "Suppliers",
     "Products": "Products",
     "Generics": "Generics",
     "Categories": "Categories",
@@ -11,7 +13,8 @@
     "signUp": "Sign Up",
     "profile": "Profile",
     "users": "Users",
-    "logout": "Logout"
+    "logout": "Logout",
+    "dashboard": "Dashboard"
   },
   "formInputs": {
     "avatarInput": {

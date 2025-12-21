@@ -10,14 +10,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import MedicationIcon from "@mui/icons-material/Medication";
-import CategoryIcon from "@mui/icons-material/Category";
-import ScienceIcon from "@mui/icons-material/Science";
-import BusinessIcon from "@mui/icons-material/Business";
 import Toolbar from "@mui/material/Toolbar";
 import ResponsiveAdminAppBar from "../app-bar-admin";
+import useAdminRoutes from "@/hooks/use-admin-routes";
 
 const drawerWidth = 240;
 
@@ -25,51 +20,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-interface RouteItem {
-  label: string;
-  path: string;
-  Icon: React.ElementType;
-}
-const dashboardRoutes: RouteItem[] = [
-  {
-    label: "Dashboard",
-    path: "/admin-panel",
-    Icon: DashboardIcon,
-  },
-  {
-    label: "Users",
-    path: "/admin-panel/users",
-    Icon: PeopleIcon,
-  },
-];
-const productsRoutes: RouteItem[] = [
-  {
-    label: "Products",
-    path: "/admin-panel/products",
-    Icon: MedicationIcon,
-  },
-  {
-    label: "Categories",
-    path: "/admin-panel/categories",
-    Icon: CategoryIcon,
-  },
-  {
-    label: "Generics",
-    path: "/admin-panel/generics",
-    Icon: ScienceIcon,
-  },
-  {
-    label: "Manufacturers",
-    path: "/admin-panel/manufacturers",
-    Icon: BusinessIcon,
-  },
-  // Drawer Menu Items
-];
-
 export default function ResponsiveDrawer(props: Props) {
   const { children } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [_, setIsClosing] = useState(false);
+  const { dashboardRoutes, productsRoutes } = useAdminRoutes();
 
   const handleDrawerClose = () => {
     setMobileOpen(false);
